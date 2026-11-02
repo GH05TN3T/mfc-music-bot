@@ -1,0 +1,36 @@
+services:
+  music-bot:
+    build:
+      context: .
+      args:
+        LAVALINK_VERSION: 4.2.2
+        BGUTIL_VERSION: 2.0.2
+    image: veltramon/music-bot:local
+    container_name: mafia-china-music-bot
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    environment:
+      HOME: /var/lib/music-bot
+      MUSIC_DATA_DIR: /var/lib/music-bot
+      DENO_DIR: /var/lib/music-bot/deno
+    volumes:
+      - music-data:/var/lib/music-bot
+      - ./secrets:/run/secrets:ro
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m
+      - /var/lib/music-bot/tmp:rw,exec,nosuid,size=128m,uid=1000,gid=1000
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 1024
+    mem_limit: 4g
+    cpus: 2.0
+    # Lavalink (2333), resolver (4417), and PO provider (4416) are intentionally
+    # not published. They are only reachable on this container's loopback.
+
+volumes:
+  music-data:

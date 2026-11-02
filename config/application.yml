@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 2333
+  address: 127.0.0.1
+
+lavalink:
+  server:
+    password: ${LAVALINK_PASSWORD:replace-this-password}
+    sources:
+      youtube: false
+      soundcloud: false
+      bandcamp: false
+      twitch: false
+      vimeo: false
+      http: true
+      local: false
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    playerUpdateInterval: 5
+    trackStuckThresholdMs: 10000
+    timeouts:
+      connectTimeoutMs: 10000
+      connectionRequestTimeoutMs: 10000
+      socketTimeoutMs: 60000
+  pluginsDir: "${MUSIC_DATA_DIR:/var/lib/music-bot}/lavalink/plugins"
+
+logging:
+  level:
+    root: INFO
+    lavalink: INFO

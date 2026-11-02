@@ -1,0 +1,20 @@
+{
+  "name": "veltramon-music-bot-stack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Seven-token Discord music bot with local Lavalink and yt-dlp resolver",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "resolver": "node src/resolver.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "discord.js": "14.27.0",
+    "dotenv": "16.6.1",
+    "shoukaku": "4.3.0"
+  }
+}
